@@ -1,15 +1,15 @@
 #include <stdlib.h>
 #include <time.h>
-#include <stdlio.h>
+#include <stdio.h>
+/**
 /* Main - Entry point 
  *
  * Return: Always 0 (success)
  */
-
 int main(void)
 {
 int n;
-int lastnum
+int lastnum;
 
 srand(time(0));
 n = rand() - RAND_MAX / 2;
