@@ -1,10 +1,20 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
+<<<<<<< HEAD
 /**
  * Main - Entry point 
  *
  * Return: Always 0 (success)
+=======
+/* more headers goes there */
+
+/* betty style doc for function main goes there */
+/**
+ * Main - Entry point 
+ *
+ * Return: Always 0(success)
+>>>>>>> 1d2c8e02e4509ef4e97d5f383a7f710c97ebae02
  */
 int main(void)
 {
