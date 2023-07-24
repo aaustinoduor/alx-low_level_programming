@@ -19,12 +19,12 @@ int main(void)
 
 	for (a = 0; a < 100; a++)
 	{
-		pass[a] = rand() % 85;
+		pass[a] = rand() % 78;
 		sum += (pass[a] + '0');
 		putchar(pass[a] + '0');
-		if ((2553 - sum) - '0' < 85)
+		if ((2772 - sum) - '0' < 78)
 		{
-			n = 2553 - sum - '0';
+			n = 2772 - sum - '0';
 			sum += n;
 			putchar(n + '0');
 			break;
