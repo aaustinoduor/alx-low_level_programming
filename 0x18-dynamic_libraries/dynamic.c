@@ -108,10 +108,39 @@ char *_strncpy(char *dest, char *src, int n)
 }
 
 // TODO
-int _atoi(void)
+int _atoi(char *str)
 {
+    int result = 0;
 
-    return 0;
+    int sign = 1;
+    int i = 0;
+    // check first character
+    if (str[i] == '-')
+    {
+        // update the sign
+        sign = -1;
+        i++;
+    }
+
+    // Iterate over the string
+    while (str[i])
+    {
+        if (str[i] < '0' || str[i] > '9')
+        {
+            return 0;
+        }
+
+        // update the result
+        result = result * 10 + str[i] - '0';
+
+        // increment 'i'
+        i++;
+    }
+
+    // finally, update sign
+    result = result * sign;
+
+    return result;
 }
 
 char *_strcat(char *dest, char *src)
