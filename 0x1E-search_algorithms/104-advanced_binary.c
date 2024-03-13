@@ -4,7 +4,7 @@ void print_search(int *array, int first, int last);
 
 
 /**
- * binary_search - Searches value in array of ints using the Binary search algo
+ * advanced_binary - Searches value in array using the Binary search algo
  *
  * @array: Array to search
  *
@@ -15,7 +15,7 @@ void print_search(int *array, int first, int last);
  * Return: First index where value is located or -1 for NULL array
  */
 
-int binary_search(int *array, size_t size, int value)
+int advanced_binary(int *array, size_t size, int value)
 {
 	/* Check inputs and call recursive search return value */
 	if (array && size)
@@ -54,19 +54,20 @@ int recursive_binary_search(int *array, int left, int right, int value)
 		print_search(array, left, right);
 
 		/* If search finds value in middle, return value */
-		if (array[middle] == value)
+		if (array[left] == value)
 		{
-			return (middle);
+			return (left);
 		}
 
 		/* If element is less than middle, search left subarray */
-		if (array[middle] > value)
+		if (array[middle] < value)
 		{
-			return (recursive_binary_search(array, left, middle - 1, value));
+			return (recursive_binary_search(array, middle + 1, right, value));
 		}
 
 		/* Otherwise search for value in right subarray */
-		return (recursive_binary_search(array, middle + 1, right, value));
+		return (recursive_binary_search(array, left, middle, value));
+
 	}
 	/* If element doesn't exist return -1 */
 	return (-1);

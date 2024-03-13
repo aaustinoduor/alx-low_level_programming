@@ -1,10 +1,12 @@
 #include "search_algos.h"
-int recursive_binary_search(int *array, int left, int right, int value);
-void print_search(int *array, int first, int last);
+#include <math.h>
 
+int r_binary_search(int *array, int left, int right, int value);
+void print_search(int *array, int first, int last);
+int min(int a, int b);
 
 /**
- * binary_search - Searches value in array of ints using the Binary search algo
+ * exponential_search - Searches value in array with Exponential search algo
  *
  * @array: Array to search
  *
@@ -15,20 +17,31 @@ void print_search(int *array, int first, int last);
  * Return: First index where value is located or -1 for NULL array
  */
 
-int binary_search(int *array, size_t size, int value)
+int exponential_search(int *array, size_t size, int value)
 {
-	/* Check inputs and call recursive search return value */
+	int index = 1;
+
 	if (array && size)
 	{
-		return (recursive_binary_search(array, 0, (int)size - 1, value));
+		/* Find first location */
+		if (array[0] == value)
+		{
+			return (0);
+		}
+		/* Get range for binary search by doubling index */
+		while (index < (int)size && array[index] <= value)
+		{
+			printf("Value checked array[%d] = [%d]\n", index, array[index]);
+			index *= 2;
+		}
+		return (r_binary_search(array, index / 2, min(index, (int)size - 1), value));
 	}
-	/* Otherwise return -1 */
 	return (-1);
 }
 
 
 /**
- * recursive_binary_search - Recursively breaks array into subarrays & searches
+ * r_binary_search - Recursively breaks array into subarrays & searches
  *
  * @array: Array to search
  *
@@ -41,7 +54,7 @@ int binary_search(int *array, size_t size, int value)
  * Return: First index where value is located or -1 for NULL array
  */
 
-int recursive_binary_search(int *array, int left, int right, int value)
+int r_binary_search(int *array, int left, int right, int value)
 {
 
 	int middle;
@@ -62,15 +75,16 @@ int recursive_binary_search(int *array, int left, int right, int value)
 		/* If element is less than middle, search left subarray */
 		if (array[middle] > value)
 		{
-			return (recursive_binary_search(array, left, middle - 1, value));
+			return (r_binary_search(array, left, middle - 1, value));
 		}
 
 		/* Otherwise search for value in right subarray */
-		return (recursive_binary_search(array, middle + 1, right, value));
+		return (r_binary_search(array, middle + 1, right, value));
 	}
 	/* If element doesn't exist return -1 */
 	return (-1);
 }
+
 
 /**
  * print_search - Prints arrayand side of array
@@ -100,4 +114,24 @@ void print_search(int *array, int first, int last)
 		printf("%d", array[index++]);
 	}
 	printf("\n");
+}
+
+
+/**
+ * min - min value
+ *
+ * @a: First number
+ *
+ * @b: Second number
+ *
+ * Return: Integer
+ */
+
+int min(int a, int b)
+{
+	if (a < b)
+	{
+		return (a);
+	}
+	return (b);
 }
